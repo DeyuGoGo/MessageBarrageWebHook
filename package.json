@@ -1,0 +1,28 @@
+{
+  "name": "node-line-echo-bot-sample",
+  "version": "1.0.0",
+  "description": "Line Echo Bot Sample : Node.js",
+  "engines": {
+    "node": "7.2.1"
+  },
+  "main": "linebothook.js",
+  "scripts": {
+    "start": "node linebothook.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "4.13.3",
+    "request": "^2.79.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DeyuGoGo/line-echo-bot-sample"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express",
+    "line-bot"
+  ],
+  "license": "MIT"
+}
