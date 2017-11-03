@@ -5,8 +5,7 @@ var request = require('request');
 var EVENT_NAME = 'MessageBarrge';
 var LINE_API_REPLY = "https://api.line.me/v2/bot/message/reply";
 var URL_FCM_MEESSAGE = "https://fcm.googleapis.com/fcm/send";
-var FIREBASE_HOST = "https://us-central1-barrage-demo.cloudfunctions.net/"
-var API_GET_TOKENS = FIREBASE_HOST + "getTokens";
+var API_GET_TOKENS =  "https://us-central1-barrage-demo.cloudfunctions.net/getTokens";
 
 var FCM_API_KEY = "key=AIzaSyAhYVLmy3R7A3B35Zn7YCjcddguRLazr6U";
 app.set('port', (process.env.PORT || 5000));
