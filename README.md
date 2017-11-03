@@ -1,0 +1,2 @@
+# MessageBarrageWebHook
+這個是配合MessageBarrage用的WebHook，這邊負責接受Bot的Message然後再透過Fcm傳訊息給MessageBarrage。
