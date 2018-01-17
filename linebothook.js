@@ -48,7 +48,6 @@ const processOnLinePost = async (events,res) => {
     let registration_ids = await getFcmRegistration_ids()
     for(var i=0; i<events.length; i++){
       const lineEvent = events[i];
-      console.log('receive: ', type);
       if(lineEvent.type==='message'){
         let userName = await getLineUserName(accessToken,lineEvent.source.userId).displayName
         let result = await sendFcmToDevices(registration_ids,lineEvent.message.text,userName)
