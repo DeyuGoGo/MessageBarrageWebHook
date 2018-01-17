@@ -10,6 +10,7 @@
     "start": "node linebothook.js"
   },
   "dependencies": {
+    "@line/bot-sdk": "^5.2.0",
     "body-parser": "^1.16.1",
     "express": "4.13.3",
     "request": "^2.79.0"
