@@ -48,7 +48,7 @@ const processOnLinePost = async (req,res) => {
     res.send('Success?')
   } catch (e) {
     res.send('Fuck you?')
-    console.log('Fuck you?');
+    console.log('Fuck you? : ' +e );
   }
 }
 
