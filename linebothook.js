@@ -42,7 +42,7 @@ const processOnLinePost = async (req,res) => {
   try {
     let accessToken = await getAccessToken()
     let registration_ids = await getFcmRegistration_ids()
-    let userName = await getUserName(accessToken,req.body.source.userId).displayName
+    let userName = await getLineUserName(accessToken,req.body.source.userId).displayName
     let result = await sendFcmToDevices(registration_ids,req.body.message[0].text,userName)
     console.log('Success?');
     res.send('Success?')
