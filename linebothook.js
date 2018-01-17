@@ -19,8 +19,8 @@ app.use(bodyParser.json())
 
 
 app.post('/postBarrge', (req, res) => {
-  console.log(req.body);
-   processOnLinePost(req,res)
+  console.log(JSON.stringify(req.body));
+   // processOnLinePost(req,res)
 });
 
 // Request body
