@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Line Echo Bot Sample : Node.js",
   "engines": {
-    "node": "7.2.1"
+    "node": "7.9.0"
   },
   "main": "linebothook.js",
   "scripts": {
