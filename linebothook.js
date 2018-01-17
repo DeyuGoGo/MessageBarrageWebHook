@@ -105,7 +105,7 @@ const sendFcmToDevices = (registration_ids,message,userName)=>{
     const payload = {
       registration_ids: registration_ids,
       data: {
-        user: user,
+        userName: userName,
         message: message
       }
     };
