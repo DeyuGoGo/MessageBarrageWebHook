@@ -24,7 +24,8 @@ app.post('/postBarrge', (req, res) => {
     res.send("No data?")
     return;
   }
-  processOnLinePost(events,res)
+  console.log(JSON.stringify(req.body));
+  // processOnLinePost(events,res)
 });
 
 // Request body
