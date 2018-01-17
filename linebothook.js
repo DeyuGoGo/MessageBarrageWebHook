@@ -19,6 +19,7 @@ app.use(bodyParser.json())
 
 
 app.post('/postBarrge', (req, res) => {
+  console.log(req.body);
    processOnLinePost(req,res)
 });
 
@@ -43,9 +44,11 @@ const processOnLinePost = async (req,res) => {
     let registration_ids = await getFcmRegistration_ids()
     let userName = await getUserName(accessToken,req.body.source.userId).displayName
     let result = await sendFcmToDevices(registration_ids,req.body.message[0].text,userName)
+    console.log('Success?');
     res.send('Success?')
   } catch (e) {
     res.send('Fuck you?')
+    console.log('Fuck you?');
   }
 }
 
