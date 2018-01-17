@@ -19,8 +19,12 @@ app.use(bodyParser.json())
 
 
 app.post('/postBarrge', (req, res) => {
-  console.log(JSON.stringify(req.body));
-   // processOnLinePost(req,res)
+  let events = req.body.events
+  if(!events){
+    res.send("No data?")
+    return;
+  }
+  processOnLinePost(events,res)
 });
 
 // Request body
@@ -38,12 +42,18 @@ app.post('/postBarrge', (req, res) => {
 //     "text": "Hello, world!"
 //   }
 // }
-const processOnLinePost = async (req,res) => {
+const processOnLinePost = async (events,res) => {
   try {
     let accessToken = await getAccessToken()
     let registration_ids = await getFcmRegistration_ids()
-    let userName = await getLineUserName(accessToken,req.body.source.userId).displayName
-    let result = await sendFcmToDevices(registration_ids,req.body.message[0].text,userName)
+    for(var i=0; i<events.length; i++){
+      const lineEvent = events[i];
+      console.log('receive: ', type);
+      if(lineEvent.type==='message'){
+        let userName = await getLineUserName(accessToken,lineEvent.source.userId).displayName
+        let result = await sendFcmToDevices(registration_ids,lineEvent.message.text,userName)
+      }
+    }
     console.log('Success?');
     res.send('Success?')
   } catch (e) {
