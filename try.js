@@ -64,7 +64,7 @@ const getAccessToken = () => {
     form: payload
   },(error , response , body)=>{
     if (!error && response.statusCode == 200) {
-      resolve(body.access_token);
+      resolve(JSON.parse(body).access_token);
     } else {
       reject(error);
     }
@@ -87,7 +87,7 @@ const getFcmRegistration_ids = () => {
       body: JSON.stringify(payload)
     },function(error , response , body){
       if (!error && response.statusCode == 200) {
-        resolve(body.tokens);
+        resolve(JSON.parse(body).tokens);
       } else {
         reject(error);
       }

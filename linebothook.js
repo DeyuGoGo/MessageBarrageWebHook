@@ -25,7 +25,7 @@ app.post('/postBarrge', (req, res) => {
     return;
   }
   console.log(JSON.stringify(req.body));
-  // processOnLinePost(events,res)
+  processOnLinePost(events,res)
 });
 
 // Request body
@@ -50,15 +50,13 @@ const processOnLinePost = async (events,res) => {
     for(var i=0; i<events.length; i++){
       const lineEvent = events[i];
       if(lineEvent.type==='message'){
-        let userName = await getLineUserName(accessToken,lineEvent.source.userId).displayName
-        let result = await sendFcmToDevices(registration_ids,lineEvent.message.text,userName)
+        let profile = await getLineUserName(accessToken,lineEvent.source.userId)
+        let result = await sendFcmToDevices(registration_ids,lineEvent.message.text,profile.displayName)
       }
     }
-    console.log('Success?');
     res.send('Success?')
   } catch (e) {
     res.send('Fuck you?')
-    console.log('Fuck you? : ' +e );
   }
 }
 
@@ -77,7 +75,7 @@ const getAccessToken = () => {
     form: payload
   },(error , response , body)=>{
     if (!error && response.statusCode == 200) {
-      resolve(body.access_token);
+      resolve(JSON.parse(body).access_token);
     } else {
       reject(error);
     }
@@ -100,7 +98,7 @@ const getFcmRegistration_ids = () => {
       body: JSON.stringify(payload)
     },function(error , response , body){
       if (!error && response.statusCode == 200) {
-        resolve(body.tokens);
+        resolve(JSON.parse(body).tokens);
       } else {
         reject(error);
       }
