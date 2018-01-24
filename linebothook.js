@@ -15,9 +15,6 @@ var FCM_API_KEY = "key=AIzaSyAhYVLmy3R7A3B35Zn7YCjcddguRLazr6U";
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json())
-
-
-
 app.post('/postBarrge', (req, res) => {
   let events = req.body.events
   if(!events){
@@ -51,7 +48,7 @@ const processOnLinePost = async (events,res) => {
       const lineEvent = events[i];
       if(lineEvent.type==='message'){
         let profile = await getLineUserName(accessToken,lineEvent.source.userId)
-        let result = await sendFcmToDevices(registration_ids,lineEvent.message.text,profile.displayName)
+        let result = await sendFcmToDevices(registration_ids,lineEvent.message.text,profile.displayName,lineEvent.message.type)
       }
     }
     res.send('Success?')
@@ -111,12 +108,13 @@ const getLineUserName = (accessToken,userid) =>{
   return client.getProfile(userid)
 }
 
-const sendFcmToDevices = (registration_ids,message,userName)=>{
+const sendFcmToDevices = (registration_ids,message,userName,type)=>{
   return new Promise((resolve, reject) =>{
     const payload = {
       registration_ids: registration_ids,
       data: {
         userName: userName,
+        type: type,
         message: message
       }
     };
